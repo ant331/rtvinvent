@@ -127,6 +127,12 @@
             color: var(--secondary);
             font-size: 0.9rem;
         }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
         
         .user-profile {
             display: flex;
@@ -445,12 +451,15 @@
                     <h1>Field Office Dashboard (<span id="district-name"></span>)</h1>
                     <p>Manage items returned from the field before sending to the central store.</p>
                 </div>
-                <div class="user-profile">
-                    <div class="avatar" id="manager-avatar">F</div>
-                    <div>
-                        <div id="manager-name">Field Manager</div>
-                        <small id="manager-role">District Officer</small>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="avatar" id="manager-avatar">F</div>
+                        <div>
+                            <div id="manager-name">Field Manager</div>
+                            <small id="manager-role">District Officer</small>
+                        </div>
                     </div>
+                    <button class="btn btn-outline" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </div>
             </header>
             
@@ -689,6 +698,11 @@
         }
         
         function setupEventListeners() {
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                sessionStorage.removeItem('loggedInUser');
+                window.location.href = 'login.html';
+            });
+
             document.getElementById('district-select').addEventListener('change', (e) => {
                 setCurrentDistrict(e.target.value);
             });
